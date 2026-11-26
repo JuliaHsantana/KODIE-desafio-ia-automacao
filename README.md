@@ -26,6 +26,7 @@ A IA não decide o conserto. Ela só organiza o recado.
 - Node.js e Express
 - API do Google Gemini, chamada por HTTP
 - n8n
+- Interface web responsiva, servida pela própria API
 - Testes com `node:test`
 
 ## Como o sistema funciona
@@ -79,6 +80,8 @@ copy .env.example .env
 
 Abra o `.env` e troque `cole_sua_chave_aqui` pela sua chave. Não envie esse arquivo ao GitHub. O modelo `gemini-3.1-flash-lite` foi validado neste projeto; se o Google informar alta demanda, tente novamente mais tarde ou configure outro modelo disponível na sua conta.
 
+O `.env.example` contém apenas valores de exemplo e deve ser versionado. O `.env` contém sua chave real, é ignorado pelo Git e não deve ser compartilhado.
+
 Terminal 1, a API:
 
 ```bash
@@ -86,6 +89,8 @@ npm start
 ```
 
 Confira `http://127.0.0.1:3000/health`. O campo `chave_configurada` precisa ser `true`.
+
+Abra `http://127.0.0.1:3000` para usar a interface: informe cliente e mensagem, ou escolha um exemplo, e clique em **Classificar mensagem**. O resultado mostra categoria, prioridade, resumo, setor, necessidade de revisão humana e fila sugerida. A tela usa o mesmo `POST /classificar` que o n8n.
 
 Teste direto na API, em outro terminal:
 
@@ -122,6 +127,7 @@ O fluxo foi publicado no n8n e testado pelo webhook de produção com `examples/
 As evidências estão em `docs/prints/`:
 
 - [Fluxo completo](docs/prints/fluxo-completo.png) e [execução bem-sucedida](docs/prints/execucao-sucesso.png).
+- [Interface web no celular](docs/prints/interface-mobile.png). A interface também funciona em telas grandes e está disponível em `http://127.0.0.1:3000` enquanto a API estiver rodando.
 - Configurações: [Webhook](docs/prints/config-webhook.png), [Separar campos](docs/prints/config-separar-campos.png), [Chamar API](docs/prints/config-chamar-api.png), [Escolher fila](docs/prints/config-escolher-fila.png), filas de [socorro](docs/prints/config-fila-socorro.png), [reclamação](docs/prints/config-fila-reclamacao.png), [orçamento](docs/prints/config-fila-orcamento.png), [agendamento](docs/prints/config-fila-agendamento.png), [dúvida](docs/prints/config-fila-duvida.png), [revisão manual](docs/prints/config-fila-revisar.png) e [Responder](docs/prints/config-responder.png).
 - Dados da execução: entrada do webhook em [tabela](docs/prints/dados-entrada-webhook.png) e [JSON](docs/prints/json-entrada-webhook.png), [classificação da API](docs/prints/dados-api-classificacao.png), [encaminhamento](docs/prints/dados-encaminhamento-socorro.png) e [resposta final](docs/prints/dados-resposta-final.png).
 
@@ -133,6 +139,7 @@ Antes de entregar, reescreva a apresentação inicial com suas próprias palavra
 src/server.js      recebe POST /classificar
 src/prompt.js      instruções e valores permitidos
 src/classify.js    chama o Gemini e confere o JSON
+public/            interface web servida pela API
 n8n/fluxo-roda-livre.json
 examples/          mensagens para testar
 tests/             teste do interpretador, sem chamar a IA

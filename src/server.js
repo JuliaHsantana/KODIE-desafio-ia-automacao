@@ -1,10 +1,13 @@
 import express from 'express';
+import { fileURLToPath } from 'node:url';
 import { classificarMensagem } from './classify.js';
 
 const app = express();
 const porta = Number(process.env.PORT) || 3000;
+const publicDir = fileURLToPath(new URL('../public/', import.meta.url));
 
 app.use(express.json());
+app.use(express.static(publicDir));
 
 app.get('/health', (_req, res) => {
   const chave = process.env.GEMINI_API_KEY;
