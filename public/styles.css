@@ -221,14 +221,14 @@ h1 span {
   top: 16px;
   right: 46px;
   border-radius: 50%;
-  background: #e5def1;
+  background: #e9e9d8;
 }
 
 .art-caption {
   position: absolute;
   right: 0;
   bottom: -3px;
-  color: #928aa0;
+  color: #9a9c8b;
   font-size: 10px;
   font-style: italic;
 }
