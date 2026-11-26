@@ -201,7 +201,7 @@ h1 span {
 }
 
 .intro-art {
-  width: 260px;
+  width: 310px;
   height: 190px;
   position: absolute;
   top: -13px;
@@ -212,25 +212,6 @@ h1 span {
   width: 100%;
   height: 100%;
   position: relative;
-}
-
-.art-sun {
-  width: 96px;
-  height: 96px;
-  position: absolute;
-  top: 16px;
-  right: 46px;
-  border-radius: 50%;
-  background: #e9e9d8;
-}
-
-.art-caption {
-  position: absolute;
-  right: 0;
-  bottom: -3px;
-  color: #9a9c8b;
-  font-size: 10px;
-  font-style: italic;
 }
 
 .workspace {
@@ -761,19 +742,19 @@ h2 {
   }
 
   .intro {
-    min-height: 205px;
+    min-height: 0;
+    flex-direction: column;
   }
 
   .intro-art {
-    width: 175px;
+    width: min(100%, 250px);
     height: 140px;
-    top: 35px;
-    right: -12px;
-    opacity: 0.52;
-  }
-
-  .art-caption {
-    display: none;
+    position: relative;
+    top: auto;
+    right: auto;
+    align-self: flex-end;
+    margin-top: 8px;
+    opacity: 0.9;
   }
 
   .intro-copy {
@@ -832,11 +813,6 @@ h2 {
     min-height: 29px;
     padding: 0 9px;
     font-size: 10px;
-  }
-
-  .intro-art {
-    right: 0;
-    opacity: 0.35;
   }
 
   h1 {
